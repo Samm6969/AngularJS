@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+  <script src="angular.min.js"></script>
+  <script src="Scripts/scripts.js"></script>
+</head>
+<body ng-controller="myController" style="font-family:Arial">
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Likes</th>
+          <th>Dislikes</th>
+          <th>Likes/Dislikes</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="technology in techlogies">
+          <td>{{technology.name}}</td>
+          <td>{{technology.likes}}</td>
+          <td>{{technology.dislikes}}</td>
+          <td>
+            <input type="button" value="Like" ng-click="incrementLikes(technology)" />
+            <input type="button" value="Disike" ng-click="incrementDislikes(technology)" />
+
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+</body>
+</html>
+=======================================script.js===========================
+ var myApp = angular.module("myModule", [])
+                    .controller("myController", function($scope) {
+                      var technologies = [
+                        { name: "C", likes: 0, dislikes: 0 },
+                        { name: "Java", likes: 0, dislikes: 0 },
+                        { name: "SQL", likes: 0, dislikes: 0 },
+                        { name: "Hadoop", likes: 0, dislikes: 0 }
+                      ];
+
+                       $scope.techlogies = technologies;
+
+                       $scope.incrementLikes = function(xxx) {
+                         xxx.likes++;
+                         }
+                      $scope.incrementDislikes = function(technology) {
+                           technology.dislikes++;
+                           }
+
+                    });
