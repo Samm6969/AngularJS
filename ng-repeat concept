@@ -1,0 +1,47 @@
+===============================index.html===========================
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+  <script src="angular.min.js"></script>
+  <script src="Scripts/scripts.js"></script>
+</head>
+<body ng-controller="myController" style="font-family:Arial">
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Gender</th>
+          <th>Salary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="emp in mwsuFaculty">
+          <td>{{emp.firstName}}</td>
+          <td>{{emp.lastName}}</td>
+          <td>{{emp.gender}}</td>
+          <td>{{emp.salary}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</body>
+</html>
+========================== script.js ============================
+ 
+ var myApp = angular.module("myModule", [])
+                    .controller("myController", function($scope) {
+                      var employees = [
+                        {firstName: "Ben", lastName: "Caldwell", gender: "Male", salary: 40000},
+                        {firstName: "shana", lastName: "meyer", gender: "female", salary: 50000},
+                        {firstName: "prasanth", lastName: "tharun", gender: "Male", salary: 70000},
+                        {firstName: "Peggy", lastName: "Lane", gender: "female", salary: 140000},
+                        {firstName: "Mark", lastName: "Lewis", gender: "Male", salary: 240000},
+                      ];
+
+                      $scope.mwsuFaculty = employees;
+
+                    });
