@@ -1,0 +1,82 @@
+======================index.html=========================
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+  <script src="angular.min.js"></script>
+  <script src="Scripts/scripts.js"></script>
+</head>
+<body ng-controller="myController" style="font-family:Arial">
+  <div>
+    <ul>
+      <li ng-repeat="eachCountry in diffCountries">
+        {{eachCountry.name}} - Index = {{$index}}
+        <ul>
+          <li ng-repeat="city in eachCountry.cities">
+            {{city.name}} - Parent Index = {{$parent.$index}}, Index = {{$index}}
+          </li>
+        </ul>
+
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>
+
+=====================script.js=================================
+ /// <reference path="angular.min.js" />
+
+//creating a module
+ var myApp = angular.module("myModule", [])
+                    .controller("myController", function($scope) {
+                      var countries = [
+                        {
+                          name: "UK",
+                          cities: [
+                            { name: "London" },
+                            { name: "Manchester" },
+                            { name: "Birmingham" }
+                          ]
+                        },
+                        {
+                          name: "USA",
+                          cities: [
+                            { name: "Kansas City" },
+                            { name: "Chicago" },
+                            { name: "Houston" }
+                          ]
+                        },
+                        {
+                          name: "INDIA",
+                          cities: [
+                            { name: "Hyderabad"},
+                            { name: "Chennai" },
+                            { name: "Delhi" }
+                          ]
+                        }
+                      ];
+                       $scope.diffCountries = countries;
+                    });
+
+ //controller is just a javaScript function-the job of the controller
+ //is to build a model(means data) for the view to display
+/*in real world, this controller may call into a webserver which retrieves
+data from the database*/
+ //creating a controller
+ /*var myController = function($scope) {
+   $scope.message = "this is AngularJS tutorials";
+ };*/
+
+ //register this controller with our module(called myApp) by using,
+ //controller function
+/* myApp.controller("myController", function($scope) {
+   var employee = {
+     firstName: "rama",
+     lastName: "hanumaan",
+     gender: "global"
+   }
+   $scope.xxx = employee;
+   var yyy = "mmmammamamma";
+   $scope.message = yyy;
+ });
+*/
